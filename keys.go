@@ -111,6 +111,7 @@ const (
 	F22
 	F23
 	F24
+	F25
 
 	// English characters
 	A // "a"
@@ -353,6 +354,8 @@ func (k Key) String() string {
 		return "F23"
 	case F24:
 		return "F24"
+	case F25:
+		return "F25"
 	case A:
 		return "A"
 	case B:
