@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// StateEvent represents an event when an keyboard key changes state (i.e.
+// ButtonEvent represents an event when a keyboard button changes state (i.e.
 // being pushed down when it was previously up, or being toggled on when it was
 // previously off, etc)
 //
@@ -20,7 +20,7 @@ import (
 // The Raw member must uniquely identify the keyboard button whose state is
 // changing, and must always be present regardless of whether or not Key ==
 // Invalid. It could (but does not have to be) e.g. the scancode of the key.
-type StateEvent struct {
+type ButtonEvent struct {
 	T     time.Time
 	Key   Key
 	State State
@@ -28,13 +28,13 @@ type StateEvent struct {
 }
 
 // Time returns the time at which this event occured.
-func (e StateEvent) Time() time.Time {
-	return e.T
+func (b ButtonEvent) Time() time.Time {
+	return b.T
 }
 
 // String returns an string representation of this event.
-func (e StateEvent) String() string {
-	return fmt.Sprintf("StateEvent(Key=%v, State=%v, Raw=%v, Time=%v)", e.Key, e.State, e.Raw, e.T)
+func (b ButtonEvent) String() string {
+	return fmt.Sprintf("ButtonEvent(Key=%v, State=%v, Raw=%v, Time=%v)", b.Key, b.State, b.Raw, b.T)
 }
 
 // TypedEvent represents an event where some sort of user input has generated
@@ -45,11 +45,11 @@ type TypedEvent struct {
 }
 
 // Time returns the time at which this event occured.
-func (e TypedEvent) Time() time.Time {
-	return e.T
+func (t TypedEvent) Time() time.Time {
+	return t.T
 }
 
 // String returns an string representation of this event.
-func (e TypedEvent) String() string {
-	return fmt.Sprintf("TypedEvent(Rune=%U %q, Time=%v)", e.Rune, string(e.Rune), e.T)
+func (t TypedEvent) String() string {
+	return fmt.Sprintf("TypedEvent(Rune=%U %q, Time=%v)", t.Rune, string(t.Rune), t.T)
 }
