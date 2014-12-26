@@ -121,6 +121,7 @@ func (w *Watcher) RawState(raw uint64) State {
 	state, ok := w.rawStates[raw]
 	if !ok {
 		w.rawStates[raw] = Up
+		return Up
 	}
 	return state
 }
