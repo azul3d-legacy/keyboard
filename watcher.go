@@ -21,9 +21,9 @@ type Watcher struct {
 // and it's associated states (but not raw ones).
 func (w *Watcher) String() string {
 	bb := new(bytes.Buffer)
-	fmt.Fprintf(bb, "Watcher(\n")
+	fmt.Fprintf(bb, "keyboard.Watcher(\n")
 	for k, s := range w.States() {
-		fmt.Fprintf(bb, "    %v: %v\n", k, s)
+		fmt.Fprintf(bb, "\t%v: %v,\n", k, s)
 	}
 	fmt.Fprintf(bb, ")")
 	return bb.String()
