@@ -30,11 +30,11 @@ func (w *Watcher) String() string {
 }
 
 // SetState specifies the current state of the specified key.
-func (w *Watcher) SetState(key Key, state State) {
+func (w *Watcher) SetState(k Key, s State) {
 	w.access.Lock()
 	defer w.access.Unlock()
 
-	w.states[key] = state
+	w.states[k] = s
 }
 
 // States returns an copy of the internal key state map used by this watcher.
@@ -42,11 +42,11 @@ func (w *Watcher) States() map[Key]State {
 	w.access.RLock()
 	defer w.access.RUnlock()
 
-	copy := make(map[Key]State)
+	cpy := make(map[Key]State)
 	for key, state := range w.states {
-		copy[key] = state
+		cpy[key] = state
 	}
-	return copy
+	return cpy
 }
 
 // EachState calls f with each known key to this watcher and it's current key
@@ -70,34 +70,34 @@ func (w *Watcher) EachState(f func(k Key, s State) bool) {
 }
 
 // State returns the current state of the specified key.
-func (w *Watcher) State(key Key) State {
+func (w *Watcher) State(k Key) State {
 	w.access.Lock()
 	defer w.access.Unlock()
 
-	state, ok := w.states[key]
+	state, ok := w.states[k]
 	if !ok {
-		w.states[key] = Up
+		w.states[k] = Up
 		return Up
 	}
 	return state
 }
 
 // Down tells whether the specified key is currently in the down state.
-func (w *Watcher) Down(key Key) bool {
-	return w.State(key) == Down
+func (w *Watcher) Down(k Key) bool {
+	return w.State(k) == Down
 }
 
 // Up tells whether the specified key is currently in the up state.
-func (w *Watcher) Up(key Key) bool {
-	return w.State(key) == Up
+func (w *Watcher) Up(k Key) bool {
+	return w.State(k) == Up
 }
 
 // SetRawState specifies the current state of the specified raw key value.
-func (w *Watcher) SetRawState(raw uint64, state State) {
+func (w *Watcher) SetRawState(raw uint64, s State) {
 	w.access.Lock()
 	defer w.access.Unlock()
 
-	w.rawStates[raw] = state
+	w.rawStates[raw] = s
 }
 
 // RawStates returns an copy of the internal raw key state map used by this
