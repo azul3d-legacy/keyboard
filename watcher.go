@@ -42,7 +42,7 @@ func (w *Watcher) States() map[Key]State {
 	w.access.RLock()
 	defer w.access.RUnlock()
 
-	cpy := make(map[Key]State)
+	cpy := make(map[Key]State, len(w.states))
 	for key, state := range w.states {
 		cpy[key] = state
 	}
@@ -106,11 +106,11 @@ func (w *Watcher) RawStates() map[uint64]State {
 	w.access.RLock()
 	defer w.access.RUnlock()
 
-	copy := make(map[uint64]State)
+	cpy := make(map[uint64]State, len(w.rawStates))
 	for raw, state := range w.rawStates {
-		copy[raw] = state
+		cpy[raw] = state
 	}
-	return copy
+	return cpy
 }
 
 // RawState returns the current state of the specified raw key value.
