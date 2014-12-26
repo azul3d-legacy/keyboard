@@ -15,11 +15,3 @@ const (
 	Down
 	Up
 )
-
-// Aliases for lock keys (e.g. Caps Lock, Num Lock, etc). When the key is
-// "locked" it is considered in the Down state, when it is "unlocked" it is in
-// the Up state.
-const (
-	On  = Down
-	Off = Up
-)
