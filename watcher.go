@@ -77,6 +77,7 @@ func (w *Watcher) State(key Key) State {
 	state, ok := w.states[key]
 	if !ok {
 		w.states[key] = Up
+		return Up
 	}
 	return state
 }
