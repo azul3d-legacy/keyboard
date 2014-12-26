@@ -79,7 +79,8 @@ func (w *Watcher) SetRawState(raw uint64, state State) {
 	w.rawStates[raw] = state
 }
 
-// RawStates returns an copy of the internal raw key state map used by this watcher.
+// RawStates returns an copy of the internal raw key state map used by this
+// watcher.
 func (w *Watcher) RawStates() map[uint64]State {
 	w.access.RLock()
 	defer w.access.RUnlock()
@@ -103,12 +104,14 @@ func (w *Watcher) RawState(raw uint64) State {
 	return state
 }
 
-// RawDown tells whether the specified raw key value is currently in the down state.
+// RawDown tells whether the specified raw key value is currently in the down
+// state.
 func (w *Watcher) RawDown(raw uint64) bool {
 	return w.RawState(raw) == Down
 }
 
-// RawUp tells whether the specified raw key value is currently in the up state.
+// RawUp tells whether the specified raw key value is currently in the up
+// state.
 func (w *Watcher) RawUp(raw uint64) bool {
 	return w.RawState(raw) == Up
 }
