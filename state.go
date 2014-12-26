@@ -4,12 +4,22 @@
 
 package keyboard
 
+// State represents a single keyboard key state.
 type State uint8
 
+// Keyboard key state constants, Down implies the key is currently pressed
+// down, and up implies it is not. The InvalidState is declared to help users
+// detect uninitialized variables.
 const (
-	InvalidState State  = iota
-	Down                // Being held down currently
-	Up                  // No longer being held down (released)
-	On           = Down // the on/active state (for lock keys; Caps Lock; Num Lock; etc..)
-	Off          = Up   // the off/inactive state (for lock keys; Caps Lock; Num Lock; etc..)
+	InvalidState State = iota
+	Down
+	Up
+)
+
+// Aliases for lock keys (e.g. Caps Lock, Num Lock, etc). When the key is
+// "locked" it is considered in the Down state, when it is "unlocked" it is in
+// the Up state.
+const (
+	On  = Down
+	Off = Up
 )
