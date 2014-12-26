@@ -38,10 +38,10 @@ func (b ButtonEvent) String() string {
 }
 
 // TypedEvent represents an event where some sort of user input has generated
-// an input character which should be considered input.
+// a string of text which should be considered as user input.
 type TypedEvent struct {
-	T    time.Time
-	Rune rune
+	T time.Time
+	S string
 }
 
 // Time returns the time at which this event occured.
@@ -49,7 +49,7 @@ func (t TypedEvent) Time() time.Time {
 	return t.T
 }
 
-// String returns an string representation of this event.
+// String simply returns the user input string.
 func (t TypedEvent) String() string {
-	return fmt.Sprintf("TypedEvent(Rune=%U %q, Time=%v)", t.Rune, string(t.Rune), t.T)
+	return t.S
 }
