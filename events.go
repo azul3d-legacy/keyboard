@@ -37,19 +37,19 @@ func (b ButtonEvent) String() string {
 	return fmt.Sprintf("ButtonEvent(Key=%v, State=%v, Raw=%v, Time=%v)", b.Key, b.State, b.Raw, b.T)
 }
 
-// TypedEvent represents an event where some sort of user input has generated
-// a string of text which should be considered as user input.
-type TypedEvent struct {
+// Typed represents an event where some sort of user input has generated a
+// string of text which should be considered as user input.
+type Typed struct {
 	T time.Time
 	S string
 }
 
 // Time returns the time at which this event occured.
-func (t TypedEvent) Time() time.Time {
+func (t Typed) Time() time.Time {
 	return t.T
 }
 
 // String simply returns the user input string.
-func (t TypedEvent) String() string {
+func (t Typed) String() string {
 	return t.S
 }
