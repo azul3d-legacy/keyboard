@@ -19,7 +19,7 @@ import (
 //
 // The Raw member must uniquely identify the keyboard button whose state is
 // changing, and must always be present regardless of whether or not Key ==
-// Invalid.
+// Invalid. It could (but does not have to be) e.g. the scancode of the key.
 type StateEvent struct {
 	T     time.Time
 	Key   Key
