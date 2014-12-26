@@ -49,6 +49,26 @@ func (w *Watcher) States() map[Key]State {
 	return copy
 }
 
+// EachState calls f with each known key to this watcher and it's current key
+// state. It does so until the function returns false or there are no more keys
+// known to the watcher.
+func (w *Watcher) EachState(f func(k Key, s State) bool) {
+	w.access.RLock()
+	defer w.access.RUnlock()
+
+	for key, state := range w.states {
+		// Call the function without the lock being held, so they can access
+		// methods on this watcher still.
+		w.access.RUnlock()
+		cont := f(key, state)
+		w.access.RLock()
+
+		if !cont {
+			return
+		}
+	}
+}
+
 // State returns the current state of the specified key.
 func (w *Watcher) State(key Key) State {
 	w.access.Lock()
