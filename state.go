@@ -4,29 +4,14 @@
 
 package keyboard
 
-import (
-	"fmt"
-)
-
+// State represents a single keyboard key state.
 type State uint8
 
+// Keyboard key state constants, Down implies the key is currently pressed
+// down, and up implies it is not. The InvalidState is declared to help users
+// detect uninitialized variables.
 const (
-	InvalidState State  = iota
-	Down                // Being held down currently
-	Up                  // No longer being held down (released)
-	On           = Down // the on/active state (for lock keys; Caps Lock; Num Lock; etc..)
-	Off          = Up   // the off/inactive state (for lock keys; Caps Lock; Num Lock; etc..)
+	InvalidState State = iota
+	Down
+	Up
 )
-
-// String returns a string representation of this keyboard key state.
-func (s State) String() string {
-	switch s {
-	case InvalidState:
-		return "InvalidState"
-	case Down:
-		return "Down"
-	case Up:
-		return "Up"
-	}
-	return fmt.Sprintf("State(%d)", s)
-}
