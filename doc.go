@@ -4,4 +4,4 @@
 //go:generate stringer -type=State,Key -output=stringers.go
 
 // Package keyboard implements various keyboard related data types.
-package keyboard // import "azul3d.org/keyboard.v2-dev"
+package keyboard // import "azul3d.org/keyboard.v2-unstable"
